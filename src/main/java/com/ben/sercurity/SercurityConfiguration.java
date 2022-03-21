@@ -13,8 +13,7 @@ public class SercurityConfiguration extends WebSecurityConfigurerAdapter {
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
 
     PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    auth
-        .inMemoryAuthentication()
+    auth.inMemoryAuthentication()
         .withUser("user")
         .password(encoder.encode("user"))
         .roles("USER")
@@ -26,12 +25,10 @@ public class SercurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-
     http.authorizeRequests()
         .antMatchers("/user").hasRole("USER")
         .antMatchers("/admin").hasAnyRole("ADMIN", "USER")
         .antMatchers("/").permitAll()
         .and().formLogin();
   }
-
 }

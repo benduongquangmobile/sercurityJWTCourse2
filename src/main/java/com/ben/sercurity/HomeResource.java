@@ -20,5 +20,4 @@ public class HomeResource {
   public String user() {
     return "Hello User";
   }
-
 }
